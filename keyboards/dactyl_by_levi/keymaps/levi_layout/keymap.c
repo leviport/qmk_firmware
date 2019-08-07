@@ -95,17 +95,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_RCTL, KC_LSFT, MO(FN)
 ),
 /* Keymap 2: Layer with arrows, media keys, function keys, etc
- *  //TODO left off here!
+ *
  * ,------------------------------------------------.           ,------------------------------------------------.
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  | KC_NO|           |KC_NO |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
  * |------+------+------+------+------+-------------|           |------+------+------+------+------+------+------|
- * |  Tab | Home |  Up  | End  | PgUp | VolUp| KC_NO|           |KC_NO |  NO  | Home |  Up  |  End |   L  |   /  |
+ * |  Tab | Home |  Up  | End  | PgUp | VolUp| KC_NO|           |KC_NO | PgUp | Home |  Up  |  End |  NO  | PrScr|
  * |------+------+------+------+------+------|      |           |      |------+------+------+------+------+------|
- * | LCtl | Left | Down | Right| PgDn | VolDn|------|           |------|  NO  |     |     |     |     |     |
+ * | LCtl | Left | Down | Right| PgDn | VolDn|------|           |------| PgDn | LEFT | DOWN | RIGHT|  NO  |  NO  |
  * |------+------+------+------+------+------| KC_NO|           |KC_NO |------+------+------+------+------+------|
- * | LSft |  NO  |  NO  |  NO  |  NO  | Mute |      |           |      |  NO  |     |     |     |     | RSft |
+ * | LSft |  NO  |  NO  |  NO  |  NO  | Mute |      |           |      |  NO  |  NO  |MPause|MPrev |MNext | RSft |
  * |------+------+------+------+------+-------------'           `-------------+------+------+------+------+------|
- * | Esc  |   [  |   Z  |   ]  |  Del |                                       | Bspc | RAlt |   \  | RSup | RCtl |
+ * | Esc  |   [  |   Z  |   ]  |  Del |                                       | Bspc |Dvorak|Qwerty| RSup | RCtl |
  * `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | LSup | LAlt |       | Tab  | Del  |
@@ -117,19 +117,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [FN] = LAYOUT_ergodox(
   // left hand
-  KC_GRV,          KC_1,        KC_2,          KC_3,    KC_4,    KC_5,    KC_NO,
-  KC_TAB,          KC_QUOT,     KC_COMM,       KC_DOT,  KC_P,    KC_Y,    KC_NO,
-  KC_LCTL,         KC_A,        KC_O,          KC_E,    KC_U,    KC_I,
-  KC_LSFT,         KC_SCLN,     KC_Q,          KC_J,    KC_K,    KC_X,    KC_NO,
+  KC_F1,           KC_F2,       KC_F3,         KC_F4,   KC_F5,   KC_F6,   KC_NO,
+  KC_TAB,          KC_HOME,     KC_UP,         KC_END,  KC_PGUP, KC_VOLU, KC_NO,
+  KC_LCTL,         KC_LEFT,     KC_DOWN,       KC_LEFT, KC_PGDN, KC_VOLD,
+  KC_LSFT,         KC_NO,       KC_NO,         KC_NO,   KC_NO,   KC_MUTE, KC_NO,
   KC_ESC,          KC_RBRC,     KC_Z,          KC_RBRC, KC_DEL,
                                                                  KC_LGUI, KC_LALT,
                                                                           KC_ESC,
                                                          KC_SPC, KC_LCTL, MO(FN),
   // right hand
-  KC_NO,        KC_6,    KC_7,    KC_8,    KC_9,          KC_0,       KC_EQL,
-  KC_NO,        KC_F,    KC_G,    KC_C,    KC_R,          KC_L,       KC_SLSH,
-                KC_D,    KC_H,    KC_T,    KC_N,          KC_S,       KC_MINS,
-  KC_NO,        KC_B,    KC_M,    KC_W,    KC_V,          KC_Z,       KC_RSFT,
+  KC_NO,        KC_F7,   KC_F8,   KC_F9,   KC_F10,        KC_F11,     KC_F12,
+  KC_NO,        KC_PGUP, KC_HOME, KC_UP,   KC_END,        KC_NO,      KC_PSCR,
+                KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,       KC_NO,      KC_NO,
+  KC_NO,        KC_NO,   KC_NO,   KC_MPLY, KC_MPRV,       KC_MNXT,    KC_RSFT,
                          KC_BSPC, KC_RALT, KC_BSLS,       KC_RGUI,    KC_RCTL,
   KC_TAB,  KC_DEL,
   KC_ENT,
