@@ -56,15 +56,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: QWERTY Layer
  *
  * ,---------------------------------------------------.           ,--------------------------------------------------.
- * |   `~    |   1  |   2  |   3  |   4  |   5  |  [   |           |  ]   |   6  |   7  |   8  |   9  |   0  |    -   |
+ * |         |   1  |   2  |   3  |   4  |   5  |  [   |           |  ]   |   6  |   7  |   8  |   9  |   0  |    -   |
  * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
- * |  Tab    |   Q  |   W  |   E  |   R  |   T  | +DV  |           | Tab  |   Y  |   U  |   I  |   O  |   P  |    =   |
+ * |         |   Q  |   W  |   E  |   R  |   T  | +DV  |           | Tab  |   Y  |   U  |   I  |   O  |   P  |    =   |
  * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |  LCtl   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |    '   |
+ * |         |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |    '   |
  * |---------+------+------+------+------+------| Esc  |           | Enter|------+------+------+------+------+--------|
- * |  LSft   |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  |  RSft  |
+ * |         |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  |        |
  * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | LCtl  | LSup |   Z  | LAlt | ~FN  |                                       | ~FN  | RAlt |   \  | RSup | RCtl |
+ *   |       |      |   Z  |      | ~FN  |                                       | ~FN  |      |   \  |      |      |
  *   `-----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | Home | End  |       | PgUp | ESC  |
@@ -76,11 +76,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [QW] = LAYOUT_ergodox(
   // left hand
-  KC_GRV,  KC_1 ,   KC_2,    KC_3,    KC_4,    KC_5,    KC_LBRC,
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(QW),
-  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_ESC,
-  KC_LCTL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS,  KC_1 ,   KC_2,    KC_3,    KC_4,    KC_5,    KC_LBRC,
+  KC_TRNS,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TG(QW),
+  KC_TRNS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,
+  KC_TRNS, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_ESC,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                                KC_HOME, KC_END,
                                                         KC_ENT,
                                        KC_SPC, KC_BSPC, KC_DEL,
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_EQL,
            KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   KC_ENT,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                    MO(FN), KC_RALT, KC_BSLS, KC_RGUI, KC_RCTL,
+                    MO(FN),  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
   KC_PGUP, KC_ESC,
   KC_PGDN,
   KC_DEL,  KC_BSPC, MO(FN)
@@ -137,30 +137,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    switch (keycode) {
-      case EPRM:
-        eeconfig_init();
-        return false;
-      case VRSN:
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-        return false;
-      #ifdef RGBLIGHT_ENABLE
-      case RGB_SLD:
-        rgblight_mode(1);
-        return false;
-      #endif
-    }
-  }
-  return true;
-}
+/* bool process_record_user(uint16_t keycode, keyrecord_t *record) { */
+
+/* }; */
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
-#ifdef RGBLIGHT_COLOR_LAYER_0
-  rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
-#endif
+
 };
 
 // Runs whenever there is a layer state change.
