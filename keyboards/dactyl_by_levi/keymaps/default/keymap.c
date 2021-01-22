@@ -10,6 +10,7 @@ enum custom_keycodes {
   RGB_SLD
 };
 
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: QWERTY layer
  *
  * ,------------------------------------------------.           ,------------------------------------------------.
@@ -37,7 +38,7 @@ enum custom_keycodes {
   KC_TAB,          KC_Q,        KC_W,          KC_E,    KC_R,    KC_T,    KC_NO,
   KC_LCTL,         KC_A,        KC_S,          KC_D,    KC_F,    KC_G,
   KC_LSFT,         KC_Z,        KC_X,          KC_C,    KC_V,    KC_B,    KC_NO,
-  KC_ESC,          KC_LBRC,    MO FN,          KC_RBRC, KC_DEL,
+  KC_ESC,          KC_LBRC,    MO(FN),          KC_RBRC, KC_DEL,
                                                                  KC_LGUI, KC_LALT,
                                                                           KC_ESC,
                                                          KC_SPC, KC_LCTL, MO(FN),
@@ -81,7 +82,7 @@ enum custom_keycodes {
   KC_ESC,          KC_RBRC,     KC_Z,          KC_RBRC, KC_DEL,
                                                                  KC_LGUI, KC_LALT,
                                                                           KC_ESC,
-                                                         KC_SPC, KC_LCTL, MO(FN,
+                                                         KC_SPC, KC_LCTL, MO(FN),
   // right hand
   KC_NO,        KC_F7,   KC_F8,   KC_F9,   KC_F10,        KC_F11,     KC_F12,
   KC_NO,        KC_PGUP, KC_HOME, KC_UP,   KC_END,        KC_NO,      KC_PSCR,
