@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "dynamic_keymap.h"
 #include "tmk_core/common/eeprom.h"
 
@@ -7,31 +6,6 @@
 #include "rgb_matrix.h"
 
 #if RGB_MATRIX_ENABLE
-=======
-/*
- *  Copyright (C) 2021  System76
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
-#include "launch_1.h"
-
-#include "usb_mux.h"
-
-// clang-format off
-#ifdef RGB_MATRIX_ENABLE
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
 // LEDs by index
 //    0   1   2   3   4   5   6   7   8   9
 // 00 LM4 LL4 LK4 LJ4 LI4 LH4 LG4 LF4 LE4 LD4
@@ -50,17 +24,10 @@ led_config_t g_led_config = { LAYOUT(
 /* 1 */ 68, 67, 66, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56, 55, 54,
 /* 2 */ 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53,
 /* 3 */ 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26,     25,
-<<<<<<< HEAD
 /* 4 */ 12, 11, 10,  9,  8,  7,  6,  5,  4,  3,  2,  1,  0,
 /* 5 */ 13, 14, 15, 16, 17,     18, 19, 20, 21, 22, 23, 24
 ), {
     // LED index to physical position (this is a pain, see qmk.sh in launch repo)
-=======
-/* 4 */ 12, 11, 10,  9,  8,  7,  6,  5,  4,  3,  2,  1,      0,
-/* 5 */ 13, 14, 15, 16, 17,     18,      19, 20, 21,    22, 23, 24
-), {
-    // LED index to physical position (see leds.sh in `launch' repo)
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
 /* 00 */ {209, 51}, {190, 51}, {171, 51}, {156, 51}, {140, 51}, {125, 51}, {110, 51}, {95, 51}, {80, 51}, {65, 51},
 /* 10 */ {49, 51}, {34, 51}, {11, 51}, {8, 64}, {27, 64}, {42, 64}, {57, 64}, {80, 64}, {110, 64}, {133, 64},
 /* 20 */ {148, 64}, {167, 64}, {194, 64}, {209, 64}, {224, 64}, {224, 38}, {197, 38}, {178, 38}, {163, 38}, {148, 38},
@@ -85,7 +52,6 @@ led_config_t g_led_config = { LAYOUT(
 } };
 #endif // RGB_MATRIX_ENABLE
 
-<<<<<<< HEAD
 bool eeprom_is_valid(void) {
     return (eeprom_read_word(((void*)EEPROM_MAGIC_ADDR)) == EEPROM_MAGIC &&
             eeprom_read_byte(((void*)EEPROM_VERSION_ADDR)) == EEPROM_VERSION);
@@ -118,49 +84,6 @@ void bootmagic_lite(void) {
     // reset the EEPROM valid state and jump to bootloader.
     if ( matrix_get_row(0) & (1<<0) ) {
         eeprom_reset();
-=======
-bool eeprom_is_valid(void) { 
-    return (
-        eeprom_read_word(((void *)EEPROM_MAGIC_ADDR)) == EEPROM_MAGIC &&
-        eeprom_read_byte(((void *)EEPROM_VERSION_ADDR)) == EEPROM_VERSION
-    );
-}
-// clang-format on
-
-void eeprom_set_valid(bool valid) {
-    eeprom_update_word(((void *)EEPROM_MAGIC_ADDR), valid ? EEPROM_MAGIC : 0xFFFF);
-    eeprom_update_byte(((void *)EEPROM_VERSION_ADDR), valid ? EEPROM_VERSION : 0xFF);
-}
-
-void bootmagic_lite_reset_eeprom(void) {
-    // Set the keyboard-specific EEPROM state as invalid
-    eeprom_set_valid(false);
-    // Set the TMK/QMK EEPROM state as invalid
-    eeconfig_disable();
-}
-
-// The lite version of TMK's bootmagic based on Wilba.
-// 100% less potential for accidentally making the keyboard do stupid things.
-void bootmagic_lite(void) {
-    // Perform multiple scans because debouncing can't be turned off.
-    matrix_scan();
-#if defined(DEBOUNCE) && DEBOUNCE > 0
-    wait_ms(DEBOUNCE * 2);
-#else
-    wait_ms(30);
-#endif
-    matrix_scan();
-
-    // If the configured key (commonly Esc) is held down on power up,
-    // reset the EEPROM valid state and jump to bootloader.
-    uint8_t row = 0;  // BOOTMAGIC_LITE_ROW;
-    uint8_t col = 0;  // BOOTMAGIC_LITE_COLUMN;
-
-    if (matrix_get_row(row) & (1 << col)) {
-        bootmagic_lite_reset_eeprom();
-
-        // Jump to bootloader.
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
         bootloader_jump();
     }
 }
@@ -169,10 +92,6 @@ void system76_ec_rgb_eeprom(bool write);
 void system76_ec_rgb_layer(layer_state_t layer_state);
 void system76_ec_unlock(void);
 bool system76_ec_is_unlocked(void);
-<<<<<<< HEAD
-=======
-
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
 rgb_config_t layer_rgb[DYNAMIC_KEYMAP_LAYER_COUNT];
 
 void matrix_init_kb(void) {
@@ -197,18 +116,12 @@ void matrix_scan_kb(void) {
     matrix_scan_user();
 }
 
-<<<<<<< HEAD
 #define LEVEL(value) (uint8_t)(\
     ((uint16_t)value) \
     * ((uint16_t)RGB_MATRIX_MAXIMUM_BRIGHTNESS) \
     / ((uint16_t)255) \
 )
 
-=======
-#define LEVEL(value) (uint8_t)(((uint16_t)value) * ((uint16_t)RGB_MATRIX_MAXIMUM_BRIGHTNESS) / ((uint16_t)255))
-
-// clang-format off
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
 static const uint8_t levels[] = {
     LEVEL(48),
     LEVEL(72),
@@ -217,15 +130,9 @@ static const uint8_t levels[] = {
     LEVEL(192),
     LEVEL(255)
 };
-<<<<<<< HEAD
 
 static uint8_t toggle_level = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
-=======
-// clang-format on
-
-static uint8_t toggle_level = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
-extern bool    input_disabled;
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
+extern bool input_disabled;
 
 static void set_value_all_layers(uint8_t value) {
     if (!system76_ec_is_unlocked()) {
@@ -237,32 +144,15 @@ static void set_value_all_layers(uint8_t value) {
 }
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-<<<<<<< HEAD
+    if (input_disabled)
+        return false;
+
     switch(keycode) {
-=======
-    if (input_disabled) {
-        return false;
-    }
-
-    if (!process_record_user(keycode, record)) {
-        return false;
-    }
-
-    switch (keycode) {
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
         case RESET:
             if (record->event.pressed) {
                 system76_ec_unlock();
             }
-<<<<<<< HEAD
             return false;
-=======
-#ifdef SYSTEM76_EC
-            return false;
-#else
-            return true;
-#endif
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
         case RGB_VAD:
             if (record->event.pressed) {
                 uint8_t level = rgb_matrix_config.hsv.v;
@@ -300,11 +190,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 
-<<<<<<< HEAD
     return process_record_user(keycode, record);
-=======
-    return true;
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
 }
 
 layer_state_t layer_state_set_kb(layer_state_t layer_state) {
@@ -313,7 +199,6 @@ layer_state_t layer_state_set_kb(layer_state_t layer_state) {
     return layer_state_set_user(layer_state);
 }
 
-<<<<<<< HEAD
 void suspend_power_down_kb(void) {
     rgb_matrix_set_suspend_state(true);
     suspend_power_down_user();
@@ -323,12 +208,3 @@ void suspend_wakeup_init_kb(void) {
     rgb_matrix_set_suspend_state(false);
     suspend_wakeup_init_user();
 }
-=======
-#ifdef CONSOLE_ENABLE
-void keyboard_post_init_user(void) {
-    debug_enable   = true;
-    debug_matrix   = false;
-    debug_keyboard = false;
-}
-#endif  // CONSOLE_ENABLE
->>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
