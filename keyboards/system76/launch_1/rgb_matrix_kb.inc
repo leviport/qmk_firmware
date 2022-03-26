@@ -1,12 +1,41 @@
+<<<<<<< HEAD
+=======
+/*
+ *  Copyright (C) 2021  System76
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+>>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
 RGB_MATRIX_EFFECT(active_keys)
 RGB_MATRIX_EFFECT(raw_rgb)
 RGB_MATRIX_EFFECT(unlocked)
 
+<<<<<<< HEAD
 #if defined(RGB_MATRIX_CUSTOM_EFFECT_IMPLS)
 #include "dynamic_keymap.h"
 
 static bool active_keys_initialized = false;
 static uint8_t active_keys_table[DRIVER_LED_TOTAL] = { 0 };
+=======
+#ifdef RGB_MATRIX_CUSTOM_EFFECT_IMPLS
+
+#include "dynamic_keymap.h"
+
+static bool active_keys_initialized = false;
+static uint8_t active_keys_table[DRIVER_LED_TOTAL] = {0};
+>>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
 
 static void active_keys_initialize(void) {
     for (uint8_t row = 0; row < MATRIX_ROWS; row++) {
@@ -50,12 +79,21 @@ static bool active_keys(effect_params_t* params) {
     return led_max < DRIVER_LED_TOTAL;
 }
 
+<<<<<<< HEAD
 RGB raw_rgb_data[DRIVER_LED_TOTAL] = { 0 };
 
 static uint8_t normalize_component(uint8_t component) {
     uint16_t x = (uint16_t)component;
     x *= rgb_matrix_config.hsv.v; // Multiply by current brightness
     x /= 255; // Divide by maximum brightness
+=======
+RGB raw_rgb_data[DRIVER_LED_TOTAL] = {0};
+
+static uint8_t normalize_component(uint8_t component) {
+    uint16_t x = (uint16_t)component;
+    x *= rgb_matrix_config.hsv.v;  // Multiply by current brightness
+    x /= 255;                      // Divide by maximum brightness
+>>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
     return (uint8_t)x;
 }
 
@@ -80,6 +118,7 @@ static bool raw_rgb(effect_params_t* params) {
 }
 
 static uint8_t unlocked_keys[8][2] = {
+<<<<<<< HEAD
     {2, 7}, // U
     {4, 6}, // N
     {3, 9}, // L
@@ -94,6 +133,22 @@ static uint8_t unlocked_ticks = 0;
 static uint8_t unlocked_i = 0;
 static uint8_t unlocked_leds_count = 0;
 static uint8_t unlocked_leds[2] = { 0, 0 };
+=======
+    {2, 7},  // U
+    {4, 6},  // N
+    {3, 9},  // L
+    {2, 9},  // O
+    {4, 3},  // C
+    {3, 8},  // K
+    {2, 3},  // E
+    {3, 3},  // D
+};
+
+static uint8_t unlocked_ticks      = 0;
+static uint8_t unlocked_i          = 0;
+static uint8_t unlocked_leds_count = 0;
+static uint8_t unlocked_leds[2]    = {0, 0};
+>>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
 
 static bool unlocked(effect_params_t* params) {
     RGB_MATRIX_USE_LIMITS(led_min, led_max);
@@ -110,11 +165,15 @@ static bool unlocked(effect_params_t* params) {
             unlocked_leds_count = 0;
             unlocked_i = 0;
         } else {
+<<<<<<< HEAD
             unlocked_leds_count = rgb_matrix_map_row_column_to_led(
                 unlocked_keys[unlocked_i][0],
                 unlocked_keys[unlocked_i][1],
                 unlocked_leds
             );
+=======
+            unlocked_leds_count = rgb_matrix_map_row_column_to_led(unlocked_keys[unlocked_i][0], unlocked_keys[unlocked_i][1], unlocked_leds);
+>>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
             unlocked_i++;
         }
     }
@@ -139,4 +198,9 @@ static bool unlocked(effect_params_t* params) {
     }
     return led_max < DRIVER_LED_TOTAL;
 }
+<<<<<<< HEAD
 #endif // RGB_MATRIX_CUSTOM_EFFECT_IMPLS
+=======
+
+#endif  // RGB_MATRIX_CUSTOM_EFFECT_IMPLS
+>>>>>>> 084df6a288503709ddde2bfa0d64e1677fe32b29
