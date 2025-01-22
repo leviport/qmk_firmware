@@ -10,7 +10,8 @@
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true
+        "nkro": true,
+        "joystick": true
     },
     "matrix_pins": {
         "cols": ["GP3"],
